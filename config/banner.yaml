@@ -1,0 +1,12 @@
+name: gitlab-group-deploy
+namespace: https://github.com/Amir0715/GitlabPipeView
+description: Плагин добавляет новые модальные окна для работы с piplines и jobs на страницах группы
+author: kamolov.amir2000@yandex.ru
+runAt: document-idle
+noframes: true
+match:
+    - https://gitlab.com/*
+# grant:
+#     - GM_xmlhttpRequest
+#     - unsafeWindow
+# connect: '*'

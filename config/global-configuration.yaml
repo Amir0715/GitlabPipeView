@@ -1,0 +1,5 @@
+- framework: svelte
+  nickname: svelte
+  componentsFilesPaths: src/svelte/components
+  cdnURL: 'https://unpkg.com/svelte@5.23.0/compiler/index.js'
+  subLibraries: []

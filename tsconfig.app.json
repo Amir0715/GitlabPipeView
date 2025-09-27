@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "isolatedModules": true,
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleDetection": "force",
+        "moduleResolution": "bundler",
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ESNext",
+        "useDefineForClassFields": true
+    },
+    "include": ["src/common/**/*.ts", "src/lifecycle/*.ts", "src/declaration/*.ts", "src/common/utils/gitlab.ts"]
+}
