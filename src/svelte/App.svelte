@@ -5,7 +5,8 @@
     import { onMount } from "svelte";
     import GlPipelines from "./components/GLPipelines.svelte";
     let showBtns = $state(false);
-    let showPiplinesModal = $state(false);
+    let isShowPiplinesModal = $state(false);
+    let isLoading = $state(false);
     let projects = $state([]);
 
     onMount(async () => {
@@ -15,10 +16,16 @@
         );
         if (sidebarHeader?.textContent.trim().toLowerCase() === "group") {
             showBtns = true;
-            projects = await getRecursiveProjects(location.pathname);
-            console.log('Все проекты собранные рекурсивно:', projects);
         }
     });
+
+    async function showPiplineModal() {
+        isLoading = true;
+        isShowPiplinesModal = true;
+        projects = await getRecursiveProjects(location.pathname);
+        isLoading = false;
+        console.log("Все проекты собранные рекурсивно:", projects);
+    }
 
     async function getRecursiveProjects(group_path: string): Promise<any> {
         let totalProjects = [];
@@ -27,18 +34,20 @@
         let response = await fetch(childrenUrl);
         let childrens = await response.json();
         let childrenProjectPromises = [];
-        
+
         for (const children of childrens) {
-            if (children.type === 'group') {
-                childrenProjectPromises.push(getRecursiveProjects(children.relative_path));
+            if (children.type === "group") {
+                childrenProjectPromises.push(
+                    getRecursiveProjects(children.relative_path),
+                );
             }
-            if (children.type === 'project') {
+            if (children.type === "project") {
                 totalProjects.push(children);
             }
         }
 
         let childrenProjects = await Promise.all(childrenProjectPromises);
-        totalProjects.push(...childrenProjects.flatMap(x => x));
+        totalProjects.push(...childrenProjects.flatMap((x) => x));
 
         return totalProjects;
     }
@@ -47,11 +56,16 @@
 {#if showBtns}
     <GlButton
         title="Piplines"
-        onclick={() => (showPiplinesModal = !showPiplinesModal)}
+        onclick={showPiplineModal}
         targetElement="div[data-testid='group-buttons']"
     />
 {/if}
 
-<GlModal title='Group piplines' isShow={showPiplinesModal} onClose={() => (showPiplinesModal = false)}>
-    <GlPipelines projects={projects}/>
+<GlModal
+    title="Group piplines"
+    isShow={isShowPiplinesModal}
+    {isLoading}
+    onClose={() => (isShowPiplinesModal = false)}
+>
+    <GlPipelines {projects} />
 </GlModal>

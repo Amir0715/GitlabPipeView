@@ -177,7 +177,7 @@
                     </th>
                     <th>
                         <div class="d-inline-flex gl-gap-x-5">
-                            <span class="gl-block lg:!gl-hidden">Actions</span>
+                            <span class="gl-block">Actions</span>
                             <button class="btn btn-default btn-default-tertiary btn-icon gl-new-dropdown-icon-only" onclick={toggleAutoRefresh} title="autorefresh: {autoRefresh ? 'on' : 'off'}">
                                 <GLIcon icon={autoRefresh ? 'retry' : 'pause'} classes="gl-button-icon"/>
                             </button>

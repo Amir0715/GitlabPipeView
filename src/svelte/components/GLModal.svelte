@@ -1,7 +1,7 @@
 <script lang="ts">
     import GLIcon from "./GLIcon.svelte";
 
-    let { title, children, isShow = false, onClose } = $props();
+    let { title, children, isShow = false, onClose, isLoading = false } = $props();
 </script>
 
 {#if isShow}
@@ -21,7 +21,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {@render children?.()}
+                        {#if isLoading}
+                            Loading...
+                        {:else}  
+                            {@render children?.()}
+                        {/if}
                     </div>
                 </div>
             </div>
