@@ -1,0 +1,52 @@
+name: Build and Release Userscript
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:  # Разрешает ручной запуск
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build userscript
+      run: npm run build:minify
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          release/gitlab-pipeview.user.js
+        body: |
+          ## GitlabPipeView ${{ github.ref_name }}
+          
+          ### Features
+          - View pipelines across GitLab groups
+          - Real-time updates with auto-refresh
+          - Support for nested subgroups
+          - GitLab-native UI integration
+          
+          ### Installation
+          1. Click on `gitlab-pipe-view.user.js` above to download
+          2. Open in Tampermonkey or drag to extensions page
+          3. Navigate to any GitLab group page
+          
+          ### Changes
+          ${{ github.event.head_commit.message }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
