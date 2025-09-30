@@ -3,9 +3,12 @@ namespace: https://github.com/Amir0715/GitlabPipeView
 description: Плагин добавляет новые модальные окна для работы с piplines и jobs на страницах группы
 author: kamolov.amir2000@yandex.ru
 runAt: document-idle
+updateURL: https://github.com/Amir0715/GitlabPipeView/releases/latest/download/gitlab-pipeview.user.js
+downloadURL: https://github.com/Amir0715/GitlabPipeView/releases/latest/download/gitlab-pipeview.user.js
 noframes: true
 match:
     - https://gitlab.com/*
+    - https://*.gitlab.com/groups/*
 # grant:
 #     - GM_xmlhttpRequest
 #     - unsafeWindow

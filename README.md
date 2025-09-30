@@ -2,6 +2,10 @@
 
 A Tampermonkey userscript that enhances GitLab group pages by adding a modal window to view and monitor pipelines across all projects within a group.
 
+[![Install GitlabPipeView](https://img.shields.io/badge/Install-GitlabPipeView-brightgreen)](https://github.com/Amir0715/GitlabPipeView/releases/latest/download/gitlab-pipeview.user.js)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Amir0715/GitlabPipeView)
+![GitHub Releases](https://img.shields.io/github/downloads/Amir0715/GitlabPipeView/latest/total)
+
 ## Overview
 GitlabPipeView provides a comprehensive overview of pipeline statuses across all projects in a GitLab group. It automatically discovers all projects (including nested subgroups) and displays their latest pipelines in a unified interface with real-time updates.
 
@@ -21,7 +25,7 @@ GitlabPipeView provides a comprehensive overview of pipeline statuses across all
 
 ### Steps
 1. [Install Tampermonkey](https://www.tampermonkey.net/index.php)
-2. Click the installation link: 
+2. Click the installation [link](https://github.com/Amir0715/GitlabPipeView/releases/latest/download/gitlab-pipeview.user.js)
 3. Tampermonkey will open and show the script preview - click "Install"
 4. Navigate to any GitLab group page to see the new "Pipelines" button
 
